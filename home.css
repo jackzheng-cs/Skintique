@@ -1,47 +1,68 @@
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+@media(max-width: 640px), (max-height:896px){
 
-  border: 1px solid black;
-}
+  body {
+    border: 1px solid black;
+    border-radius: 30px;
+    height: 100vh;
+    padding: 25px;
+  }
 
-h1 {
-  font-family: "Krona One", serif;
-  font-size: 22px;
-  font-style: normal;
-}
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid black;
+    border-radius: 30px;
+  }
 
-.overview {
-  width: 331px;
-  height: 250px;
-  border: 1px solid black;
-  border-radius: 40px;
-}
+  h1 {
+    font-family: "Krona One", serif;
+    font-size: 22px;
+    font-style: normal;
+    font-size: 28px;
+    text-align: center;
+  }
 
-.top {
-  padding: 20px;
-  text-align: center;
-}
+  .overview {
+    width: 331px;
+    height: 250px;
+    border: 1px solid black;
+    border-radius: 40px;
 
-.bottom {
-}
+    font-size: 20px;
+  }
 
-.camera-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 150px;
-  height: 150px;
-  border: 1px solid black;
-  border-radius: 20px;
-}
+  .top {
+    padding: 20px;
+    text-align: center;
+  }
 
-button {
-  border-radius: 50px;
-  border: 1px solid black;
-  margin-top: 25px;
-  width: 85px;
-  height: 85px;
+  .bottom {
+    border: 1px solid black;
+    margin: 10px;
+    height: 100px;
+    text-align: center;
+  }
+
+  .camera-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 70px;
+  }
+
+  button {
+    border-radius: 50px;
+    border: 1px solid black;
+    margin-top: 25px;
+    width: 85px;
+    height: 85px;
+    font-size: 50px;
+
+  }
 }
