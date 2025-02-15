@@ -1,0 +1,47 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  border: 1px solid black;
+}
+
+h1 {
+  font-family: "Krona One", serif;
+  font-size: 22px;
+  font-style: normal;
+}
+
+.overview {
+  width: 331px;
+  height: 250px;
+  border: 1px solid black;
+  border-radius: 40px;
+}
+
+.top {
+  padding: 20px;
+  text-align: center;
+}
+
+.bottom {
+}
+
+.camera-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+button {
+  border-radius: 50px;
+  border: 1px solid black;
+  margin-top: 25px;
+  width: 85px;
+  height: 85px;
+}
