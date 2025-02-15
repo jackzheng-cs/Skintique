@@ -1,0 +1,128 @@
+@media(max-width: 640px){
+
+
+    body {
+      border: 1px solid black;
+      border-radius: 30px;
+      height: 100vh;
+      padding: 25px;
+      background-color: #f9f1ec;
+    }
+ 
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* gap: 30px; */
+      /* border: 1px solid black; */
+      border-radius: 30px;
+      height: 100vh;
+      padding: 0px;
+      margin: 0px;
+      color: #6e4915;
+    }
+
+
+
+
+    .skin-analysis{
+        border: 7px solid black;
+        border-radius: 30px;
+        width: 410px;
+        height: 290px;
+        background-color: #ddebf7;
+        border-color: #cfe2f3;
+        margin-bottom: 30px;
+    }
+
+
+    .skin-issues{
+        /* border: 1px solid black; */
+        border: 7px solid #c4d1c2;
+        border-radius: 30px;
+        width: 410px;
+        height: 290px;
+        text-align: left;
+        background-color: #dce8db;
+        margin-bottom: 30px;
+    }
+ 
+    .top1 {
+        /* border: 1px solid black; */
+        font-family: "Krona One", serif;
+        font-size: 22px;
+        font-style: normal;
+        text-align: center;
+        padding: 10px;
+        border-radius: 25px 25px 0px 0px;
+        background-color: #f1f7fc;
+        font-size: 18px;
+    }
+
+
+    .top2 {
+        /* border: 1px solid black; */
+        font-family: "Krona One", serif;
+        font-size: 22px;
+        font-style: normal;
+        text-align: center;
+        padding: 10px;
+        border-radius: 25px 25px 0px 0px;
+        background-color: #edf2ed;
+        font-size: 18px;
+    }
+
+
+    .analysis{
+        margin: 10px;
+        border: 1px solid black;
+        height: 180px;
+        padding: 10px;
+        text-align: center;
+        font-family: "Jura", serif, normal;
+    }
+
+
+    .issues{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 10px;
+        border: 1px solid black;
+        height: 180px;
+        padding: 10px;
+        font-family: "Jura", serif, normal;
+
+
+    }
+
+
+    .issue1{
+        border: 1px solid black;
+    }
+
+
+    .issue2{
+        border: 1px solid black;
+    }
+
+
+    .issue3{
+        border: 1px solid black;
+    }
+
+
+    button{
+        border-radius: 30px;
+        /* border: 1px solid black; */
+        background-color: #cfe2f3;
+        border-color: #cfe2f3;
+        margin-bottom: 0px;
+        width: 170px;
+        height: 57px;
+        font-size: 20px;
+        color: #6e4915;
+
+
+    }
+  }
