@@ -7,10 +7,13 @@
       width: 414px;
       height: 896px;
 
+      padding: 20px;
+
       background-color: #f9f1ec;
     }
  
     main {
+        /* border: 1px solid black; */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -23,8 +26,13 @@
     }
 
     .content{
+        /* border: 1px solid black; */
         display: flex;
         flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+        height: 100%;
 
         gap: 38px;
     }
@@ -33,18 +41,17 @@
         border: 7px solid #cfe2f3;
         border-radius: 30px;
 
-        width: 370px;
+        width: 390px;
         height: 350px;
 
         background-color: #ddebf7;
     }
 
-
     .skin-issues{
         border: 7px solid #c4d1c2;
         border-radius: 30px;
 
-        width: 370px;
+        width: 390px;
         height: 370px;
 
         text-align: left;
@@ -58,10 +65,8 @@
 
         background-color: #f1f7fc;
         font-size: 18px;
-        font-family: "Krona One", serif;
-        font-style: normal;
+        font-family: "Krona One", serif, normal;
     }
-
 
     .top2 {
         text-align: center;
@@ -70,26 +75,23 @@
 
         background-color: #edf2ed;
         font-size: 18px;
-        font-family: "Krona One", serif;
-        font-style: normal;
+        font-family: "Krona One", serif, normal;
     }
 
-
     .analysis{
-        margin: 10px;
         padding: 10px;
 
-        border: 2px dotted rgb(159, 179, 221);
+        /* border: 2px dotted rgb(159, 179, 221); */
         height: 260px;
 
         text-align: center;
         font-family: "Jura", serif, normal;
     }
 
-
     .issues{
         display: flex;
         flex-direction: column;
+
         gap: 10px;
 
         margin: 10px;
@@ -111,7 +113,6 @@
         border-radius: 5px;
     }
 
-
     .issue1, .issue2, .issue3{
         border-bottom: 2px solid #9d9171;
         margin-right: 10px;
@@ -122,11 +123,19 @@
         flex-shrink: 0; 
     }
 
+    .camera-btn{
+        display: flex;
+        justify-content: center;
+
+        width: 100%;
+        height: 118px;
+
+        padding-top: 35px;
+    }
 
     button{
         border-radius: 30px;
         border: 1px solid black;
-        margin-top: 20px;
 
         width: 160px;
         height: 56px;
