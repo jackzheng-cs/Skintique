@@ -8,5 +8,15 @@
       padding: 25px;
       background-color: #f9f1ec;
     }
+    .top1 {
+        font-family: "Krona One", serif;
+        font-size: 22px;
+        font-style: normal;
+        text-align: center;
+        padding: 10px;
+        border-radius: 25px 25px 0px 0px;
+        background-color: #f1f7fc;
+        font-size: 18px;
+    }
 
 }
