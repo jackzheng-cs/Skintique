@@ -1,24 +1,40 @@
-@media(max-width: 640px), (max-height:896px){
-
+@media (max-width: 640px), (max-height: 896px) {
   body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 414px;
+    height: 896px;
+    background-color: #f9f1ec;
     border: 1px solid black;
     border-radius: 30px;
-    height: 100vh;
-    padding: 25px;
   }
 
   main {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     gap: 20px;
-    border: 1px solid black;
+
+    width: 370px;
+    height: 850px;
+
+    background-color: #c8d7c8;
+
     border-radius: 30px;
   }
 
+  header {
+    margin-top: 20px;
+    width: 330px;
+    height: 80px;
+  }
+
   h1 {
+    margin: 0;
+    color: #6e4915;
     font-family: "Krona One", serif;
-    font-size: 22px;
     font-style: normal;
     font-size: 28px;
     text-align: center;
@@ -27,22 +43,28 @@
   .overview {
     width: 331px;
     height: 250px;
-    border: 1px solid black;
+    border: 7px solid #96ac92;
     border-radius: 40px;
 
     font-size: 20px;
   }
 
   .top {
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50px;
+    background-color: white;
+    color: #6e4915;
+    font-family: "Jura", serif;
     text-align: center;
+    border-radius: 35px 35px 0px 0px;
   }
 
   .bottom {
-    border: 1px solid black;
-    margin: 10px;
-    height: 100px;
-    text-align: center;
+    height: 200px;
+    border-radius: 0px 0px 35px 35px;
+    background: whitesmoke;
   }
 
   .camera-btn {
@@ -51,18 +73,27 @@
     align-items: center;
     width: 150px;
     height: 150px;
-    border: 1px solid black;
+    background-color: white;
     border-radius: 20px;
     margin: 70px;
   }
 
   button {
-    border-radius: 50px;
-    border: 1px solid black;
+    border-radius: 50%;
     margin-top: 25px;
     width: 85px;
     height: 85px;
+    background-color: #cfe2f3;
+    border: none;
+    color: #6e4915;
     font-size: 50px;
+  }
 
+  .camera-btn p {
+    margin-top: 10px;
+    height: 12px;
+    color: #6e4915;
+    font-family: "Jura", serif;
+    font-size: 12px;
   }
 }
