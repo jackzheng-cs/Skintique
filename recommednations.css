@@ -1,40 +1,56 @@
 body {
-    font-family: Arial, sans-serif;
+
+    border: 1px solid black;
+    border-radius: 30px;
+    width: 414px;
+    height: 896px;
+    padding: 20px;
+    background-color: #F9F1EC;
+}
+
+main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f9f1ec;
-    margin: 0;
+    width: 100%;
+
+    color: #6e4915;
 }
 
 .recommendations-container {
-    width: 350px;
-    background-color: #e3f2d1;
-    padding: 15px;
-    border-radius: 15px;
+    width: 370px;
+    height: 850px;
+    background-color: #C8D7C8;
+    padding: 20px;
+    border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
-
-.header {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .line-break {
     width: 100%;
-    height: 2px; /* Thickness of the line */
-    background-color: #6e4915; /* Brown color */
-    margin: 10px 0;
+    height: 2px; 
+    background-color: #6e4915; 
+    margin: 10px 0; 
+    flex-shrink: 0; 
+}
+
+.header {
+    text-align: center;
+    padding: 20px;
+    border-radius: 25px 25px 0px 0px;
+    background-color: #f1f7fc;
+    font-size: 18px;
+    font-family: "Krona One", serif, normal;
 }
 
 .product {
-    background-color: #ddebf7;
+    /*background-color: #ddebf7;*/
+    background-color: #C8D7C8;
     padding: 10px;
     border-radius: 15px;
     margin-bottom: 15px;
@@ -56,20 +72,19 @@ body {
 }
 
 .product-image {
-    width: 100px;
-    height: 120px;
+    width: 160px;
+    height: 280px;
     background-color: #C8D7C8;
     border-radius: 10px;
 }
 
 .product-description {
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 280px;
     background-color: #d1e0f2;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    padding: 5px;
 }
