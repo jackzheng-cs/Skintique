@@ -1,44 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Care Bot</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .camera-btn { margin-top: 20px; }
+        #result { margin-top: 20px; white-space: pre-wrap; text-align: left; display: inline-block; }
+    </style>
+</head>
+<body>
+    <h1>Skin Care Bot</h1>
+    <input type="file" id="imageInput" accept="image/*">
+    <div class="camera-btn">
+        <button onclick="triggerFileInput()">📸 Upload Image</button>
+    </div>
+    <button onclick="analyzeImage()">Analyze</button>
+    <div id="result"></div>
 
-    <!-- Google Fonts -->
-    <!-- Krona One -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Krona+One&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
+    <script>
+        function triggerFileInput() {
+            document.getElementById('imageInput').click();
+        }
 
-    <!-- Jura -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Krona+One&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./home.css" />
-    <title>Test</title>
-  </head>
+        async function analyzeImage() {
+            const input = document.getElementById('imageInput');
+            const file = input.files[0];
+            if (!file) {
+                document.getElementById('result').innerText = 'Please upload an image first.';
+                return;
+            }
 
-  <body>
-    <main>
-      <header>
-        <h1>WELCOME to Skin-tique!</h1>
-      </header>
+            const formData = new FormData();
+            formData.append('image', file);
 
-      <section class="overview">
-        <div class="top">What is this app?</div>
-        <div class="bottom"></div>
-      </section>
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    body: formData
+                });
 
-      <section class="camera-btn">
-        <button>+</button>
-        <p>START HERE!</p>
-      </section>
-    </main>
-  </body>
+                if (!response.ok) throw new Error('Failed to analyze image.');
+
+                const result = await response.json();
+                document.getElementById('result').innerText = JSON.stringify(result, null, 2);
+            } catch (error) {
+                document.getElementById('result').innerText = error.message;
+            }
+        }
+    </script>
+</body>
 </html>
