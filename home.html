@@ -1,54 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skin Care Bot</title>
+    <title>Skin Care Bot - Analyze Skin</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        .camera-btn { margin-top: 20px; }
-        #result { margin-top: 20px; white-space: pre-wrap; text-align: left; display: inline-block; }
-    </style>
-</head>
-<body>
-    <h1>Skin Care Bot</h1>
-    <input type="file" id="imageInput" accept="image/*">
-    <div class="camera-btn">
-        <button onclick="triggerFileInput()">📸 Upload Image</button>
-    </div>
-    <button onclick="analyzeImage()">Analyze</button>
-    <div id="result"></div>
-
-    <script>
-        function triggerFileInput() {
-            document.getElementById('imageInput').click();
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
         }
 
-        async function analyzeImage() {
-            const input = document.getElementById('imageInput');
-            const file = input.files[0];
-            if (!file) {
-                document.getElementById('result').innerText = 'Please upload an image first.';
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="file"], input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .loading {
+            color: #007BFF;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Skin Care Bot</h1>
+        <p>Upload an image and provide details for analysis</p>
+
+        <!-- Form to get user input -->
+        <form id="analysisForm">
+            <label for="skinConcern">Describe your skin concern (optional):</label>
+            <textarea id="skinConcern" placeholder="e.g., acne, dryness, etc."></textarea>
+
+            <label for="imageInput">Upload your image:</label>
+            <input type="file" id="imageInput" accept="image/*" required />
+
+            <button type="button" onclick="analyzeSkin()">Analyze Skin</button>
+        </form>
+
+        <div id="loadingMessage" class="loading" style="display: none;">Analyzing...</div>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        async function analyzeSkin() {
+            const form = document.getElementById('analysisForm');
+            const fileInput = document.getElementById('imageInput');
+            const skinConcern = document.getElementById('skinConcern').value;
+            const resultDiv = document.getElementById('result');
+            const loadingMessage = document.getElementById('loadingMessage');
+
+            if (!fileInput.files[0]) {
+                resultDiv.innerHTML = '<p class="error">Please select an image to analyze.</p>';
                 return;
             }
 
+            // Clear previous result and show loading message
+            resultDiv.innerHTML = '';
+            loadingMessage.style.display = 'block';
+
             const formData = new FormData();
-            formData.append('image', file);
+            formData.append('image', fileInput.files[0]);
+            formData.append('skinConcern', skinConcern);
 
             try {
-                const response = await fetch('/analyze', {
+                const response = await fetch('http://localhost:5000/analyze', {
                     method: 'POST',
-                    body: formData
+                    body: formData,
                 });
 
-                if (!response.ok) throw new Error('Failed to analyze image.');
-
                 const result = await response.json();
-                document.getElementById('result').innerText = JSON.stringify(result, null, 2);
+
+                // Hide the loading message
+                loadingMessage.style.display = 'none';
+
+                if (response.ok) {
+                    // Display the result from the backend
+                    resultDiv.innerHTML = `
+                        <h3>Analysis Result:</h3>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `<p class="error">Error: ${result.error || 'An unknown error occurred.'}</p>`;
+                }
             } catch (error) {
-                document.getElementById('result').innerText = error.message;
+                loadingMessage.style.display = 'none';
+                resultDiv.innerHTML = `<p class="error">An error occurred: ${error.message}</p>`;
             }
         }
     </script>
 </body>
+
 </html>
