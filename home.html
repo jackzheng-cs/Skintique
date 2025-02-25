@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skin Care Bot - Analyze Skin</title>
+    <title>Skintique - Analyze Skin</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,7 +29,7 @@
             color: #333;
         }
 
-        input[type="file"], input[type="text"], textarea {
+        input[type="file"], textarea {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -53,6 +53,7 @@
 
         .result {
             margin-top: 20px;
+            text-align: left;
         }
 
         .error {
@@ -67,13 +68,12 @@
 
 <body>
     <div class="container">
-        <h1>Skin Care Bot</h1>
-        <p>Upload an image and provide details for analysis</p>
+        <h1>Skintique</h1>
+        <p>Upload an image and describe your skin concern for analysis.</p>
 
-        <!-- Form to get user input -->
         <form id="analysisForm">
-            <label for="skinConcern">Describe your skin concern (optional):</label>
-            <textarea id="skinConcern" placeholder="e.g., acne, dryness, etc."></textarea>
+            <label for="skinConcern">Describe your skin concern:</label>
+            <textarea id="skinConcern" placeholder="e.g., acne, dryness, redness" required></textarea>
 
             <label for="imageInput">Upload your image:</label>
             <input type="file" id="imageInput" accept="image/*" required />
@@ -88,7 +88,6 @@
 
     <script>
         async function analyzeSkin() {
-            const form = document.getElementById('analysisForm');
             const fileInput = document.getElementById('imageInput');
             const skinConcern = document.getElementById('skinConcern').value;
             const resultDiv = document.getElementById('result');
@@ -99,27 +98,22 @@
                 return;
             }
 
-            // Clear previous result and show loading message
             resultDiv.innerHTML = '';
             loadingMessage.style.display = 'block';
 
             const formData = new FormData();
             formData.append('image', fileInput.files[0]);
-            formData.append('skinConcern', skinConcern);
 
             try {
-                const response = await fetch('http://localhost:5000/analyze', {
+                const response = await fetch('http://localhost:5000/', {
                     method: 'POST',
                     body: formData,
                 });
 
                 const result = await response.json();
-
-                // Hide the loading message
                 loadingMessage.style.display = 'none';
 
                 if (response.ok) {
-                    // Display the result from the backend
                     resultDiv.innerHTML = `
                         <h3>Analysis Result:</h3>
                         <pre>${JSON.stringify(result, null, 2)}</pre>

@@ -1,17 +1,16 @@
 from flask import Flask, request, jsonify
 import requests
-import os
 
 app = Flask(__name__)
 
-# Define the RapidAPI URL
+# Define the RapidAPI credentials
 RAPIDAPI_URL = "https://skin-analyze-pro.p.rapidapi.com/facebody/analysis/skinanalyze-pro"
-
-# Set your RapidAPI Key
 RAPIDAPI_KEY = "56a07c45d4msh38bf0a7024da080p13bc9fjsn1ef3fe154312"
 
-@app.route('/analyze', methods=['POST'])
+@app.route('/', methods=['POST'])
 def analyze_skin():
+    print("Request received!")  # Debugging step
+
     # Ensure an image file is received
     if 'image' not in request.files:
         return jsonify({"error": "No image file part"}), 400
@@ -21,33 +20,28 @@ def analyze_skin():
     # Ensure an image file is actually uploaded
     if image_file.filename == '':
         return jsonify({"error": "No selected file"}), 400
-    
-    # Prepare the image data for the API
+
+    print(f"Received file: {image_file.filename}")  # Debugging step
+
+    # Read image data
     image_data = image_file.read()
-    
-    # Prepare headers for the RapidAPI request
-    headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'x-rapidapi-host': 'skin-analyze-pro.p.rapidapi.com',
-        'x-rapidapi-key': RAPIDAPI_KEY
-    }
-    
-    # Prepare the payload (form data)
-    payload = {
-        'image': (image_file.filename, image_data, 'image/jpeg')  # Change to the correct MIME type if needed
-    }
 
     try:
-        # Send POST request to the RapidAPI endpoint
-        response = requests.post(RAPIDAPI_URL, headers=headers, files=payload)
+        # Prepare headers
+        headers = {
+            'x-rapidapi-key': RAPIDAPI_KEY,
+            'x-rapidapi-host': "skin-analyze-pro.p.rapidapi.com"
+        }
         
-        # Check if the request was successful
-        if response.status_code == 200:
-            return jsonify(response.json())  # Return the API response as JSON
-        else:
-            return jsonify({"error": "Failed to analyze skin", "status_code": response.status_code}), 500
+        # Prepare file data
+        files = {'image': ('image.jpg', image_data, 'image/jpeg')}
+        
+        # Send POST request
+        response = requests.post(RAPIDAPI_URL, files=files, headers=headers)
+        
+        return jsonify(response.json())
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
-
+    
 if __name__ == "__main__":
     app.run(debug=True)
