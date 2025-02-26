@@ -1,71 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skintique - Analyze Skin</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
-        }
-
-        .container {
-            text-align: center;
-            background-color: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 400px;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        input[type="file"], textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .result {
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        .error {
-            color: red;
-        }
-
-        .loading {
-            color: #007BFF;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
 </head>
-
 <body>
     <div class="container">
         <h1>Skintique</h1>
@@ -82,7 +22,6 @@
         </form>
 
         <div id="loadingMessage" class="loading" style="display: none;">Analyzing...</div>
-
         <div id="result" class="result"></div>
     </div>
 
@@ -105,7 +44,7 @@
             formData.append('image', fileInput.files[0]);
 
             try {
-                const response = await fetch('http://localhost:5000/', {
+                const response = await fetch('/analyze', {
                     method: 'POST',
                     body: formData,
                 });
@@ -128,5 +67,4 @@
         }
     </script>
 </body>
-
 </html>
